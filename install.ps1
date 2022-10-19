@@ -36,24 +36,6 @@ catch {
 }
 #endregion
 
-#region Notepad++
-try {
-    Start-Process -filepath 'c:\temp\npp.7.8.8.Installer.x64.exe' -Wait -ErrorAction Stop -ArgumentList '/S'
-    Copy-Item 'C:\temp\config.model.xml' 'C:\Program Files\Notepad++'
-    Rename-Item 'C:\Program Files\Notepad++\updater' 'C:\Program Files\Notepad++\updaterOld'
-    if (Test-Path "C:\Program Files\Notepad++\notepad++.exe") {
-        Write-Log "Notepad++ has been installed"
-    }
-    else {
-        write-log "Error locating the Notepad++ executable"
-    }
-}
-catch {
-    $ErrorMessage = $_.Exception.message
-    write-log "Error installing Notepad++: $ErrorMessage"
-}
-#endregion
-
 #region Sysprep Fix
 # Fix for first login delays due to Windows Module Installer
 try {
